@@ -1,1 +1,1 @@
-web: python xx_to_1846_routes.py
+web: gunicorn xx_to1846_routes:app
