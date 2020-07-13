@@ -1,23 +1,22 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
-{% block header %}
-  <h3>{% block title %}Enter your 18xx game data{% endblock %}</h3>
-{% endblock %}
-
-{% block content %}
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.game_data.label }}<br>
-            {{ form.game_data() }}
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
-  {% if tiles %}
-  <h3>1846 Game Route Import Text</h3>
-    {% for tile in tiles%}
-    {{ tile }}</br>
-    {% endfor %}
-  {% endif %}
+{% block app_content %}
+<h3>Welcome to 18xx.games to 1846 Routes bridge app</h3>
+<p>Copy your 18xx.games game data into the field bellow and click submit</p>
+   <div class="row">
+        <div class="col-md-4">
+            {{ wtf.quick_form(form) }}
+        </div>
+    </div>
+{% if tiles %}
+<hr>
+<h3>1846 Game Route Import Text</h3>
+<p>Copy the text bellow into your 1846 Routes import text box.</p>
+<br>
+{% for tile in tiles%}
+{{ tile }}</br>
+{% endfor %}
+{% endif %}
 
 {% endblock %}
