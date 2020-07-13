@@ -1,12 +1,6 @@
 import json
 
 
-def load_game_data(filename):
-    with open(filename) as file:
-        game_data = json.load(file)
-    return game_data
-
-
 def fix_rotation(tile, rotation):
     rotation_3_tiles = [19, 41, 42]
     rotation_2_tiles = [6, 8, 16, 51, 292]
@@ -50,12 +44,9 @@ def tile_configuration(game_data):
     return board_layout
 
 
-def export_tile_configuration(filename):
-    game_data = load_game_data(filename)
-    tiles = tile_configuration(game_data)
-    tile_str = ''
-
-    for hexagon, tile in tiles.items():
-        tile_str += f'{hexagon}; {tile[0]}; {tile[1]}\n'
-
-    return tile_str
+def get_1846_routes_tile_configuration(json18xx):
+    game_data = json.loads(json18xx)
+    tiles = [f'{hexagon}; {tile[0]}; {tile[1]}' for hexagon, tile in tile_configuration(game_data).items()]
+    # for hexagon, tile in tiles.items():
+    #    tile_str += f'{hexagon}; {tile[0]}; {tile[1]}\n'
+    return tiles
